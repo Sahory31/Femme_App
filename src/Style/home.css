@@ -1,0 +1,186 @@
+#home{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+}
+#dsktpMenu{
+    display: none;
+}
+#upperMenu{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100vw;
+    background-color: white;
+    color: #3C3E67;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 22px;
+}
+.navBtns{
+    width:24px;
+}
+#userTemplate{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+}
+#userPic{
+    width: 50px;
+    height: 50px;
+    border-radius: 30px;
+}
+#userName{
+    min-width: 200px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    letter-spacing: 0.02em;
+    color: #3C3E67;
+}
+#postContent{
+    width: 300px;
+    height: 67px;
+    border: 1px solid #E5E5E5;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+    letter-spacing: 0.02em;
+    color: #393838;
+}
+#postMenu{
+    display: flex;
+    justify-content: space-between;
+}
+.postBtns{
+    width: 30px;
+    margin-top: 10%;
+}
+#addFiles{
+    min-width: 100px;
+}
+#postSubmit{
+    background-color: #6D67B9;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 15px;
+    letter-spacing: 0.02em;
+    color: #FFFFFF;
+    height: 30px;
+    width: 80px;
+    margin-top: 5%;
+    border: none;
+}
+#bottomMenu{
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: flex-end;
+    justify-content: space-around;
+    background-color: white;
+}
+#bottomMenu .navBtns{
+    width: 30px;
+}
+#posts{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+    letter-spacing: 0.02em;
+    color: #393838;
+}
+#posts li{
+    list-style-type: none;
+}
+
+
+@media screen and (min-width:768px){
+    #dsktpMenu{
+        display: block;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        width: 100vw;
+        background-color: white;
+        border-bottom: 1px solid #9A9A9A;
+    }
+    #dsktpMenu .nav{
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+        flex-wrap: nowrap;
+    }
+    #dsktpMenu .navBtns{
+        width: 42px;
+        padding: 25px;
+    }
+    #dsktpMenu p {
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 24px;
+        text-align: right;
+        letter-spacing: 0.02em;
+        color: #1c3047;
+    }
+    #userTemplate{
+        margin-top: 1em;
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        width: 80vh;
+        text-align: center;
+    }
+    #userPic{
+        width: 60px;
+        height: 60px;
+        border-radius: 30px;
+    }
+    #postContent{
+        width: 800px;
+        height: 90px;
+        margin-top: 1em;
+        font-size: 20px;
+    }
+    #postSubmit{
+        font-size: 20px;
+        line-height: 30px;
+        height: 60px;
+        width: 150px;
+        margin-top: 1em;
+    }
+    .postBtns{
+        width: 50px;
+    }
+    #upperMenu{
+        display: none;
+    }
+    #bottomMenu{
+        display: none;
+    }
+    #posts{
+        font-size: 20px;
+        line-height: 29px;  
+        width: 60vw;
+    }
+}
+

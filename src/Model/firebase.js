@@ -1,111 +1,65 @@
+// -------------------------FIREBASE KEY AND CONFIG------------------------- //
 
-import { components } from "../View/index.js"
-
-/*-------------------------FIREBASE KEY AND CONFIG-------------------------*/
-
-var firebaseConfig = {
-    apiKey: "AIzaSyDZBy9n50HCcJmEOL5-zzYyguPmUJGk3yM",
-    authDomain: "red-feminista.firebaseapp.com",
-    databaseURL: "https://red-feminista.firebaseio.com",
-    projectId: "red-feminista",
-    storageBucket: "red-feminista.appspot.com",
-    messagingSenderId: "7507219044",
-    appId: "1:7507219044:web:bc69a1f4bd8ea5a1218571",
-    measurementId: "G-2L40V7GZPX"
+const firebaseConfig = {
+    apiKey: 'AIzaSyDZBy9n50HCcJmEOL5-zzYyguPmUJGk3yM',
+    authDomain: 'red-feminista.firebaseapp.com',
+    databaseURL: 'https://red-feminista.firebaseio.com',
+    projectId: 'red-feminista',
+    storageBucket: 'red-feminista.appspot.com',
+    messagingSenderId: '7507219044',
+    appId: '1:7507219044:web:bc69a1f4bd8ea5a1218571',
+    measurementId: 'G-2L40V7GZPX',
 };
-// Initialize Firebase
+// Initialize Firebase //
 firebase.initializeApp(firebaseConfig);
-//const dataBase = firebase.firestore();
 
-/*------------------------------LOG IN -----------------------------*/
+// Retrieve Firestore data //
+const dataBase = firebase.firestore();
 
-function logInFn(email, password){
-    firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        // ...
-        alert("ERROR: " + errorMessage );
-      }); 
+// ------------------------------LOG IN ----------------------------- //
+
+function logInFn(email, password) {
+    return firebase.auth().signInWithEmailAndPassword(email, password);
 };
-
-//This is for view changes. We are not using it yet. 
-firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-      // User is signed in.
-      var user = firebase.auth().currentUser;
-      
-      if (user != null) {
-        var email_id = user.email;
-        document.querySelector("#userID").innerHTML = "User : " + email_id;
-      }
-    } else {
-      // No user is signed in.
-      document.querySelector("#createAccount").style.display = "block";
-      document.querySelector("#welcomeUser").style.display = "none";
-    }
-});
 
 /*------------------------------SIGN UP -----------------------------*/
 
-function signUpFn (email, password) {
-    firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        console.log(errorCode);
-        console.log(errorMessage);
-        alert("Tu contraseña o tu correo no es válido" +" "+ ":(");
-    });
+function signUpFn(email, password) {
+    return firebase.auth().createUserWithEmailAndPassword(email, password);
 };
 
 /*------------------------------LOG OUT-----------------------------*/
 
-function logOutFn(){
-    firebase.auth().signOut();/*.then(function() {
-        // Sign-out successful.
-        document.querySelector("#createAccount").style.display = "block";
-        document.querySelector("#welcomeUser").style.display = "none";
-      }).catch(function(error) {
-        // An error happened.
-    });*/
-}; 
+function logOutFn() {
+    return firebase.auth().signOut();
+};
 
+/*------------------------------FACEBOOK AUTH-----------------------------*/
+function facebookAuth() {
+    var provider = new firebase.auth.FacebookAuthProvider();
+    return firebase.auth().signInWithPopup(provider);
+};
 
-/*------------------------------LOG IN APPS-----------------------------*/
-const providerGoogle = new firebase.auth.GoogleAuthProvider();
+/*------------------------------GOOGLE AUTH-----------------------------*/
+function googleAuth() {
+    var provider = new firebase.auth.GoogleAuthProvider();
+    return firebase.auth().signInWithPopup(provider);
+};
 
-const providerFacebook = new firebase.auth.FacebookAuthProvider();
-const providerTwitter = new firebase.auth.TwitterAuthProvider();
+/*------------------------------TWITTER AUTH-----------------------------*/
+function twitterAuth() {
+    var provider = new firebase.auth.TwitterAuthProvider();
+    return firebase.auth().signInWithPopup(provider);
+};
 
-const loginApps = (providers) => {
-  switch (providers){
-    case 1: 
-      firebase.auth().signInWithPopup(providerGoogle).then(function(result){   
-        // This gives you a Google Access Token. You can use it to access the Twitter API.
-        var token = result.credential.accessToken;
-        // The signed-in user info.
-        var user = result.user;
-      })
-      break;
+/*------------------------------CREATE USER-----------------------------*/
+function createUser(id, name, email, foto) {
+    return firebase.firestore().collection('users').doc(id).set({
+        ID: id,
+        Nombre: name,
+        Email: email,
+        Foto: foto,
+    });
+};
 
-    case 2:
-    firebase.auth().signInWithPopup(providerFacebook).then(function(result){
-           // This gives you a Facebook Access Token. You can use it to access the Twitter API.
-           var token = result.credential.accessToken;
-           // The signed-in user info.
-           var user = result.user;
-         });
-    break;
-
-    case 3:
-    firebase.auth().signInWithPopup(providerTwitter).then(function(result){
-           // This gives you a Twitter Access Token. You can use it to access the Twitter API.
-           var token = result.credential.accessToken;
-           // The signed-in user info.
-           var user = result.user;
-         });
-    break;
-  }
-}
-
-export { logInFn, signUpFn, logOutFn, loginApps }
+export { dataBase, facebookAuth, googleAuth, twitterAuth, logInFn, signUpFn, logOutFn, createUser }

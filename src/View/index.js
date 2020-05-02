@@ -1,13 +1,15 @@
 import Welcome from "./welcome.js";
 import Register from "./register.js";
 import Home from "./home.js";
-import Perfil from "./perfil.js"
+import EditProfile from "./editProfile.js";
+import Profile from "./viewProfile.js";
 
 const components = {
     welcome: Welcome,
     register: Register,
     home: Home,
-    perfil: Perfil
+    edit: EditProfile,
+    profile: Profile,
 };
 
 localStorage.setItem("templates", JSON.stringify(components));

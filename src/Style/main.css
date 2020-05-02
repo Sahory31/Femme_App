@@ -3,33 +3,10 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #F0C7A7;
     color: #3C3E67;
     font-family: 'Montserrat', sans-serif;
+    margin: 0;
 }
-
-#menu{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.navLinks{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-.navLinks a{
-    color: #3C3E67;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: bolder; 
-    letter-spacing: 0.12em;
-    font-size: 12px;
-    text-decoration: none;
-}
-.navLinks li{
-    list-style: none;
-}
-
 #footer{
     display: flex;
     max-height: 16vh;

@@ -1,7 +1,10 @@
-import { registerFn } from '../src/index.js';
+import { signUp } from '../Model/firebase.js';
 
-describe('ponUp', () => {
+describe('eMail', () => {
     it('debería ser una función', () => {
-        expect(typeof registerFn).toBe('function');
+        expect(typeof signUp).toBe(true);
     });
+    it('deberia ser un correo', () => {
+        expect(correo('brenda@hotmail.com')).toBe(true);
+    })
 });
